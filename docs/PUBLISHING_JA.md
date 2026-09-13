@@ -82,3 +82,10 @@ aemeth.fiはMarcariaでIn Registration Process。DNS設定が提供されるま�
 ## 2026-09-13 全面改修
 
 両サイトを同じテンプレートの色違いから、それぞれのブランドを持つ構成へ作り直した。æmethは暖色の紙とセリフ体（Fraunces）、煉瓦色の一文字。Aethelは寒色の紙とグロテスク体（Bricolage Grotesque）、判断＝群青・保証＝琥珀・決済済＝青緑。ヒーローの図解、ライフサイクル、権限の対角行列、正本の所在表、PoCの失敗系はインラインSVGとHTMLで描き、外部資産は読まない。ローカルでPC幅と390px幅、英日両方を実ブラウザーで確認してから公開した。
+
+## 2026-09-13 aemeth.fi の DNS 設定（codex に委託、検収済み）
+
+- Marcaria で aemeth.fi の apex A を GitHub Pages の 4 件に置き換え、www に CNAME zkfmi.github.io を設定した。旧値（Marcaria 仮ページ 192.230.79.89 / 199.83.135.102、www の incapdns CNAME）は削除。MX/TXT なし、URL 転送なし。
+- 発注書: `docs/2026-09-13-codex-order-aemeth-dns.md`。保存後の画面と、権威 NS（ns01〜03.trademarkarea.com）への直接問い合わせで新しい値を確認した。
+- GitHub 側: `zkFMI/aemeth` の Pages カスタムドメインに aemeth.fi を設定済み。証明書の発行は GitHub の resolver が新しい A を見てからになる。
+- 残り: HTTPS 確認後にリポジトリ変数 `SITE_URL=https://aemeth.fi` を設定して再公開し、Aethel 側の æmeth リンクを aemeth.fi に切り替える。
