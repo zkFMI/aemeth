@@ -4,14 +4,18 @@
 
 - `build.py`: 英語・日本語のコンテンツとHTML生成。
 - `static/style.css`: PCと狭幅の表示。外部フォントや画像の取得は不要。
-- `static/favicon.svg`: ブランドの文字アイコン。
+- `static/fonts/`: 自前配信するフォント（Fraunces, Inter, JetBrains Mono）。外部からの取得はしない。
+- `static/site.js`: 「名前の由来」の文字消去デモだけを動かす。
+- `brand/*.path`: æ / Æ のグリフ輪郭。ヒーローの記号とファビコンに使う。
+- `static/og.png`: `brand/og.html` を 1200×630 で描画したSNS用画像。
+- `WORDMARK=Æmeth python3 build.py` で大文字合字の表記に切り替えられる。
 - `public/`: 公開対象のみ。生成物はGit管理しない。
 - `.github/workflows/pages.yml`: mainから生成し、Pagesへ配信。
 - `version.txt`: 配信されたソースcommit SHA。
 
 英語のURLは `/`、日本語は `/ja/`。リンクはプロジェクトURLの
 サブディレクトリでも独自ドメインでも動く相対パスを使う。
-JavaScript、バックエンド、フォーム、問い合わせメール設定はない。
+バックエンド、フォーム、問い合わせメール設定はない。
 技術資料はzkFMIの公開ドキュメント、実装はGitHubへ接続する。
 
 ## 通常の更新
@@ -74,3 +78,7 @@ Pages設定をDNSより先に行う。DNS変更と証明書発行には時間が
 確認時の配信ソース: `6998a4e8f87a2c26d1380b8fbd943d67cbc5786f`。
 
 aemeth.fiはMarcariaでIn Registration Process。DNS設定が提供されるまで独自ドメイン接続は未完了。AethelへのHTTPSリンクは証明書発行待ち。
+
+## 2026-09-13 全面改修
+
+両サイトを同じテンプレートの色違いから、それぞれのブランドを持つ構成へ作り直した。æmethは暖色の紙とセリフ体（Fraunces）、煉瓦色の一文字。Aethelは寒色の紙とグロテスク体（Bricolage Grotesque）、判断＝群青・保証＝琥珀・決済済＝青緑。ヒーローの図解、ライフサイクル、権限の対角行列、正本の所在表、PoCの失敗系はインラインSVGとHTMLで描き、外部資産は読まない。ローカルでPC幅と390px幅、英日両方を実ブラウザーで確認してから公開した。
