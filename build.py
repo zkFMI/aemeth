@@ -15,6 +15,12 @@ WORDMARK = os.environ.get('WORDMARK', 'æmeth')          # 'æmeth' or 'Æmeth'
 ZK = 'https://zkfmi.com/'
 AETHEL = 'https://aethel.fi/'
 GITHUB = 'https://github.com/zkFMI'
+PLAUSIBLE = '''<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-wR0UNT6uwXVW4gCa_o6hy.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>'''
 GLYPH_HERO = (ROOT / 'brand' / ('ae-upper-italic.path' if WORDMARK[0] == 'Æ' else 'ae-lower-italic.path')).read_text().strip()
 
 
@@ -258,6 +264,7 @@ def render(lang):
 <link rel="icon" href="{p}favicon.svg" type="image/svg+xml">
 <link rel="preload" href="{p}fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{p}style.css">
+{PLAUSIBLE}
 </head>
 <body>
 <a class="skip" href="#main">{escape(d['skip'])}</a>
@@ -348,7 +355,7 @@ if __name__ == '__main__':
     (OUT / 'favicon.svg').write_text(favicon())
     (OUT / '.nojekyll').touch()
     (OUT / 'version.txt').write_text(os.environ.get('GITHUB_SHA', 'local-preview') + '\n')
-    (OUT / '404.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Page not found — æmeth</title><link rel="stylesheet" href="' + BASE + '/style.css"><main class="wrap" style="padding:6rem 0"><h1>Page not found</h1><p><a class="btn" href="' + BASE + '/">Return to æmeth</a></p></main></html>')
+    (OUT / '404.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Page not found — æmeth</title><link rel="stylesheet" href="' + BASE + '/style.css">' + PLAUSIBLE + '<main class="wrap" style="padding:6rem 0"><h1>Page not found</h1><p><a class="btn" href="' + BASE + '/">Return to æmeth</a></p></main></html>')
     (OUT / 'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: ' + BASE + '/sitemap.xml\n')
     (OUT / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + ''.join('<url><loc>' + BASE + q + '</loc></url>' for q in ('/', '/ja/')) + '</urlset>')
     print('Built æmeth (wordmark: %s) → public/' % WORDMARK)

@@ -11,9 +11,10 @@ python3 -m http.server 8000 --directory public
 ```
 
 English is at `/`, Japanese at `/ja/`. Fonts (Fraunces, Inter, JetBrains Mono)
-are self-hosted under `static/fonts/`; nothing is fetched from a third party at
-runtime, there is no tracking and no form. The only script is `static/site.js`,
-which drives the letter demo in the "name" section.
+are self-hosted under `static/fonts/`. The only third-party resource fetched at
+runtime is the Plausible analytics script (cookie-less page-view counting, the
+`PLAUSIBLE` snippet in `build.py`). The other script is `static/site.js`, which
+drives the letter demo in the "name" section. There is no form.
 
 `WORDMARK=Æmeth python3 build.py` builds the capital-ligature variant of the
 wordmark, hero glyph and favicon. The default is the lowercase `æmeth`.
